@@ -19,7 +19,7 @@ import com.filipeoliveira.mymoviecatalog.ui.theme.dimen50Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
 
 @Composable
-fun Loading(
+fun OnLoading(
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -45,5 +45,5 @@ fun Loading(
 @Preview
 @Composable
 fun LoadingPreview() {
-    Loading()
+    OnLoading()
 }
