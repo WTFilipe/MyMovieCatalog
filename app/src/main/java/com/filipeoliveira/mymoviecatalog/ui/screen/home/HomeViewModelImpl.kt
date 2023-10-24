@@ -1,4 +1,4 @@
-package com.filipeoliveira.mymoviecatalog.ui.home
+package com.filipeoliveira.mymoviecatalog.ui.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

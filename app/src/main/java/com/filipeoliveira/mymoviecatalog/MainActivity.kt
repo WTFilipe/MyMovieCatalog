@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.filipeoliveira.mymoviecatalog.ui.home.ScreenHome
+import com.filipeoliveira.mymoviecatalog.ui.screen.home.ScreenHome
 import com.filipeoliveira.mymoviecatalog.ui.theme.MyMovieCatalogTheme
 import dagger.hilt.android.AndroidEntryPoint
 

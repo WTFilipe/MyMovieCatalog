@@ -1,4 +1,4 @@
-package com.filipeoliveira.mymoviecatalog.ui.home
+package com.filipeoliveira.mymoviecatalog.ui.screen.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -26,11 +27,16 @@ import com.filipeoliveira.mymoviecatalog.ui.theme.dimen4Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
 
 @Composable
-fun MovieItem(movie: Movie, modifier: Modifier = Modifier) {
+fun MovieItem(
+    movie: Movie,
+    modifier: Modifier = Modifier,
+    isDisabled: Boolean = false
+) {
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface),
+            .background(MaterialTheme.colorScheme.surface)
+            .alpha(if (isDisabled) 0.4F else 1.0F),
         elevation = CardDefaults.cardElevation(
             defaultElevation = dimen8Dp
         )
@@ -45,6 +51,10 @@ fun MovieItem(movie: Movie, modifier: Modifier = Modifier) {
                 contentDescription = null,
                 modifier = Modifier,
                 error = forwardingPainter(
+                    painter = painterResource(R.drawable.ic_launcher_foreground),
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
+                ),
+                placeholder = forwardingPainter(
                     painter = painterResource(R.drawable.ic_launcher_foreground),
                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
                 ),
@@ -78,19 +88,14 @@ fun MovieItemPreview() {
     MovieItem(
         Movie(
             adult = false,
-            backdrop_path = "/tC78Pck2YCsUAtEdZwuHYUFYtOj.jpg",
-            genre_ids = listOf(28, 53, 80),
             id = 926393,
-            original_language = "en",
             original_title = "The Equalizer 3",
             overview = "Sentindo-se em casa no sul da Itália, o ex-agente Robert McCall logo descobre que seus novos amigos estão sob o controle dos chefes do crime local.  À medida que os acontecimentos se tornam mortais, McCall sabe o que tem de fazer: tornar-se o protetor dos seus amigos, enfrentando a máfia.",
-            popularity = 1924.03,
             poster_path = "/AnJOKbSQsp0QqiUhsQooqFRjPsD.jpg",
             release_date = "2023-08-30",
             title = "O Protetor: Capítulo Final",
             vote_count = 23,
             vote_average = 4.7,
-            video = false
         )
     )
 }

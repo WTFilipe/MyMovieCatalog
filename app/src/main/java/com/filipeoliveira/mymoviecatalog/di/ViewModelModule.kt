@@ -1,7 +1,7 @@
 package com.filipeoliveira.mymoviecatalog.di
 
-import com.filipeoliveira.mymoviecatalog.ui.home.HomeViewModel
-import com.filipeoliveira.mymoviecatalog.ui.home.HomeViewModelImpl
+import com.filipeoliveira.mymoviecatalog.ui.screen.home.HomeViewModel
+import com.filipeoliveira.mymoviecatalog.ui.screen.home.HomeViewModelImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
