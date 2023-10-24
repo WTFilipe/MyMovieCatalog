@@ -16,8 +16,8 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.filipeoliveira.mymoviecatalog.data.Movie
-import com.filipeoliveira.mymoviecatalog.ui.OnError
-import com.filipeoliveira.mymoviecatalog.ui.OnLoading
+import com.filipeoliveira.mymoviecatalog.ui.components.OnError
+import com.filipeoliveira.mymoviecatalog.ui.components.OnLoading
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen16Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
 

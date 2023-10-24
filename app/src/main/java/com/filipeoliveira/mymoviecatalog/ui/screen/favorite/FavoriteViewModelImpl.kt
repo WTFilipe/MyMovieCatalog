@@ -39,7 +39,7 @@ class FavoriteViewModelImpl @Inject constructor(
             getFavoriteMoviesUseCase.execute()
                 .catch {
                     _favoriteState.value = ScreenFavoriteModel(
-                        isLoading = true,
+                        isLoading = false,
                         error = it,
                         data = emptyList()
                     )
@@ -48,7 +48,7 @@ class FavoriteViewModelImpl @Inject constructor(
                     when (result) {
                         is Result.Error -> {
                             _favoriteState.value = ScreenFavoriteModel(
-                                isLoading = true,
+                                isLoading = false,
                                 error = result.error,
                                 data = emptyList()
                             )
@@ -56,7 +56,7 @@ class FavoriteViewModelImpl @Inject constructor(
 
                         is Result.Success -> {
                             _favoriteState.value = ScreenFavoriteModel(
-                                isLoading = true,
+                                isLoading = false,
                                 error = null,
                                 data = result.data
                             )

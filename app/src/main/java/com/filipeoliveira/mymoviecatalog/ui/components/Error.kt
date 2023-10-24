@@ -1,4 +1,4 @@
-package com.filipeoliveira.mymoviecatalog.ui
+package com.filipeoliveira.mymoviecatalog.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

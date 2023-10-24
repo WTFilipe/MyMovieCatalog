@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">My Movie Catalog</string>
 
+    <string name="title_home">Home</string>
+    <string name="title_search">Busca</string>
+    <string name="title_favorite">Favoritos</string>
+
     <string name="label_loading">Carregando</string>
+
     <string name="error_empty_response">Não há dados para serem exibidos aqui</string>
     <string name="error_generic">Ocorreu um erro. Por favor, tente novamente.</string>
 </resources>

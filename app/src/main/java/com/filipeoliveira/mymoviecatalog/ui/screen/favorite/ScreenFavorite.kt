@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.filipeoliveira.mymoviecatalog.data.Movie
-import com.filipeoliveira.mymoviecatalog.ui.OnError
-import com.filipeoliveira.mymoviecatalog.ui.OnLoading
+import com.filipeoliveira.mymoviecatalog.ui.components.OnError
+import com.filipeoliveira.mymoviecatalog.ui.components.OnLoading
 import com.filipeoliveira.mymoviecatalog.ui.screen.home.MovieItem
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen16Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
@@ -26,7 +26,7 @@ fun ScreenFavorite(
 
     when{
         uiState.error != null -> { uiState.error?.let { OnError(it, modifier = modifier) } }
-        uiState.isLoading -> { OnLoading(modifier = modifier) }
+        uiState.isLoading -> { OnLoading(modifier = modifier.fillMaxSize()) }
         uiState.data.isEmpty() -> { OnDataSuccess(uiState.data, modifier) }
     }
 }

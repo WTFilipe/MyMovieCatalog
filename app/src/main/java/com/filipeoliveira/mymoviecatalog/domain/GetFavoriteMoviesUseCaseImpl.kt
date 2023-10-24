@@ -18,9 +18,9 @@ class GetFavoriteMoviesUseCaseImpl @Inject constructor(
             }
             .collect {
                 if (it.isEmpty()) {
-                    Result.Error(EmptyResponseError())
+                    emit(Result.Error(EmptyResponseError()))
                 } else {
-                    Result.Success(it)
+                    emit(Result.Success(it))
                 }
             }
     }
