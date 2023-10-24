@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.filipeoliveira.mymoviecatalog.data.Movie
+import com.filipeoliveira.mymoviecatalog.ui.Loading
+import com.filipeoliveira.mymoviecatalog.ui.OnError
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen16Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
 
@@ -29,9 +31,9 @@ fun ScreenHome(
         val uiState = viewModel.screenHomeModel.collectAsState().value
 
         when {
-            uiState.isLoading -> { /*ShowLoading*/ }
-            uiState.error != null -> {/*Show error*/ }
-            uiState.data.isNotEmpty() -> {OnDataSuccess(uiState.data)}
+            uiState.isLoading -> { Loading() }
+            uiState.error != null -> { OnError(uiState.error!!) }
+            uiState.data.isNotEmpty() -> { OnDataSuccess(uiState.data) }
         }
     }
 }
