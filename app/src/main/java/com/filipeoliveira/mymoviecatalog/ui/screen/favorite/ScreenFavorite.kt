@@ -27,7 +27,7 @@ fun ScreenFavorite(
     when{
         uiState.error != null -> { uiState.error?.let { OnError(it, modifier = modifier) } }
         uiState.isLoading -> { OnLoading(modifier = modifier.fillMaxSize()) }
-        uiState.data.isEmpty() -> { OnDataSuccess(uiState.data, modifier) }
+        uiState.data.isNotEmpty() -> { OnDataSuccess(uiState.data, modifier) }
     }
 }
 
