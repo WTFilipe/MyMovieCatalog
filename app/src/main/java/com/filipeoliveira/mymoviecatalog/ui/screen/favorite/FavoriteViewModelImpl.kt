@@ -2,8 +2,8 @@ package com.filipeoliveira.mymoviecatalog.ui.screen.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.filipeoliveira.mymoviecatalog.domain.GetFavoriteMoviesUseCase
-import com.filipeoliveira.mymoviecatalog.domain.Result
+import com.filipeoliveira.domain.usecase.GetFavoriteMoviesUseCase
+import com.filipeoliveira.domain.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModelImpl @Inject constructor(
-    private val getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
+    private val getFavoriteMoviesUseCase: com.filipeoliveira.domain.usecase.GetFavoriteMoviesUseCase
 ) : ViewModel(), FavoriteViewModel {
 
     private val _favoriteState: MutableStateFlow<ScreenFavoriteModel> = MutableStateFlow(

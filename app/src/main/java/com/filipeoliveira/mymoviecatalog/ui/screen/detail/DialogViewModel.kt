@@ -1,6 +1,6 @@
 package com.filipeoliveira.mymoviecatalog.ui.screen.detail
 
-import com.filipeoliveira.mymoviecatalog.data.Movie
+import com.filipeoliveira.domain.model.Movie
 
 interface DialogViewModel {
     fun isFavorite(movie: Movie)

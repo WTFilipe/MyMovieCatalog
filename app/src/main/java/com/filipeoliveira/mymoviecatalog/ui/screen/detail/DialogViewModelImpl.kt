@@ -2,13 +2,7 @@ package com.filipeoliveira.mymoviecatalog.ui.screen.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.filipeoliveira.mymoviecatalog.data.Movie
-import com.filipeoliveira.mymoviecatalog.domain.AddToFavoriteUseCase
-import com.filipeoliveira.mymoviecatalog.domain.IsFavoriteUseCase
-import com.filipeoliveira.mymoviecatalog.domain.IsWatchedUseCase
-import com.filipeoliveira.mymoviecatalog.domain.MarkMovieAsNotWatchedUseCase
-import com.filipeoliveira.mymoviecatalog.domain.MarkMovieAsWatchedUseCase
-import com.filipeoliveira.mymoviecatalog.domain.RemoveFromFavoriteUseCase
+import com.filipeoliveira.domain.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,12 +12,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DialogViewModelImpl @Inject constructor(
-    private val isFavoriteUseCase: IsFavoriteUseCase,
-    private val isWatchedUseCase: IsWatchedUseCase,
-    private val markMovieAsWatchedUseCase: MarkMovieAsWatchedUseCase,
-    private val markMovieAsNotWatchedUseCase: MarkMovieAsNotWatchedUseCase,
-    private val addToFavoriteUseCase: AddToFavoriteUseCase,
-    private val removeFromFavoriteUseCase: RemoveFromFavoriteUseCase,
+    private val isFavoriteUseCase: com.filipeoliveira.domain.usecase.IsFavoriteUseCase,
+    private val isWatchedUseCase: com.filipeoliveira.domain.usecase.IsWatchedUseCase,
+    private val markMovieAsWatchedUseCase: com.filipeoliveira.domain.usecase.MarkMovieAsWatchedUseCase,
+    private val markMovieAsNotWatchedUseCase: com.filipeoliveira.domain.usecase.MarkMovieAsNotWatchedUseCase,
+    private val addToFavoriteUseCase: com.filipeoliveira.domain.usecase.AddToFavoriteUseCase,
+    private val removeFromFavoriteUseCase: com.filipeoliveira.domain.usecase.RemoveFromFavoriteUseCase,
 ): ViewModel(), DialogViewModel {
 
     private val _screenDialogState: MutableStateFlow<ScreenDialogModel> = MutableStateFlow(

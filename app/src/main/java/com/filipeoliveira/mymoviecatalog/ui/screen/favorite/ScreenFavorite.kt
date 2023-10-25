@@ -10,7 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.filipeoliveira.mymoviecatalog.data.Movie
+import com.filipeoliveira.domain.model.Movie
 import com.filipeoliveira.mymoviecatalog.ui.components.OnError
 import com.filipeoliveira.mymoviecatalog.ui.components.OnLoading
 import com.filipeoliveira.mymoviecatalog.ui.screen.home.MovieItem

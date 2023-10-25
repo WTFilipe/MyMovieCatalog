@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.filipeoliveira.mymoviecatalog.R
-import com.filipeoliveira.mymoviecatalog.data.Movie
+import com.filipeoliveira.domain.model.Movie
 import com.filipeoliveira.mymoviecatalog.ui.forwardingPainter
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen4Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp

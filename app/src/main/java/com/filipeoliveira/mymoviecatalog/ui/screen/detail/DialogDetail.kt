@@ -32,7 +32,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.filipeoliveira.mymoviecatalog.R
-import com.filipeoliveira.mymoviecatalog.data.Movie
+import com.filipeoliveira.domain.model.Movie
 import com.filipeoliveira.mymoviecatalog.ui.components.OnLoading
 import com.filipeoliveira.mymoviecatalog.ui.forwardingPainter
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen16Dp

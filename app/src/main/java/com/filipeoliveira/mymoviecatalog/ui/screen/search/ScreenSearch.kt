@@ -23,7 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.filipeoliveira.mymoviecatalog.data.Movie
+import com.filipeoliveira.domain.model.Movie
 import com.filipeoliveira.mymoviecatalog.ui.components.OnError
 import com.filipeoliveira.mymoviecatalog.ui.components.OnLoading
 import com.filipeoliveira.mymoviecatalog.ui.screen.detail.DialogDetail

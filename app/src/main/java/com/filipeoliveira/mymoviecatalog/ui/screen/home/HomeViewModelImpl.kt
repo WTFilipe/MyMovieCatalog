@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.filipeoliveira.mymoviecatalog.data.Movie
-import com.filipeoliveira.mymoviecatalog.domain.GetPopularMoviesUseCase
+import com.filipeoliveira.domain.model.Movie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModelImpl @Inject constructor(
-    private val getPopularMoviesUseCase: GetPopularMoviesUseCase
+    private val getPopularMoviesUseCase: com.filipeoliveira.domain.usecase.GetPopularMoviesUseCase
 ): ViewModel(), HomeViewModel {
 
     private val _movieState: MutableStateFlow<PagingData<Movie>> = MutableStateFlow(value = PagingData.empty())
