@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridScope
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
@@ -42,23 +43,41 @@ fun ScreenHome(
             mutableStateOf<Movie?>(null)
         }
 
-        LazyVerticalStaggeredGrid(
-            columns =
-            if (uiState.loadState.refresh is LoadState.Loading) {
-                StaggeredGridCells.Fixed(1)
-            } else {
-                StaggeredGridCells.Fixed(2)
-            },
-            verticalItemSpacing = dimen8Dp,
-            horizontalArrangement = Arrangement.spacedBy(dimen8Dp),
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(horizontal = dimen16Dp, vertical = dimen16Dp)
-        ) {
-            handleGridItems(uiState){ movie ->
-                showMovieDetail = movie
+        when {
+            uiState.loadState.refresh is LoadState.Loading -> {
+                OnLoading(modifier = Modifier.fillMaxSize().padding(dimen16Dp))
             }
 
-            handleLoadState(uiState)
+            uiState.loadState.refresh is LoadState.Error -> {
+                val error = uiState.loadState.refresh as LoadState.Error
+                OnError(
+                    modifier = Modifier.fillMaxSize().padding(dimen16Dp),
+                    error = error.error,
+                    onClick = {
+                        viewModel.loadPopularMovieList()
+                    }
+                )
+            }
+            else -> {
+                LazyVerticalStaggeredGrid(
+                    columns =
+                    if (uiState.loadState.refresh is LoadState.Loading) {
+                        StaggeredGridCells.Fixed(1)
+                    } else {
+                        StaggeredGridCells.Fixed(2)
+                    },
+                    verticalItemSpacing = dimen8Dp,
+                    horizontalArrangement = Arrangement.spacedBy(dimen8Dp),
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(horizontal = dimen16Dp, vertical = dimen16Dp)
+                ) {
+                    handleGridItems(uiState) { movie ->
+                        showMovieDetail = movie
+                    }
+
+                    handleLoadState(uiState)
+                }
+            }
         }
 
         showMovieDetail?.let {
@@ -88,10 +107,6 @@ private fun LazyStaggeredGridScope.handleGridItems(
 private fun LazyStaggeredGridScope.handleLoadState(uiState: LazyPagingItems<Movie>) {
     uiState.apply {
         when {
-            loadState.refresh is LoadState.Loading -> {
-                item { OnLoading(modifier = Modifier.fillMaxSize()) }
-            }
-
             loadState.refresh is LoadState.Error -> {
                 val error = uiState.loadState.refresh as LoadState.Error
                 item {
@@ -120,4 +135,3 @@ private fun LazyStaggeredGridScope.handleLoadState(uiState: LazyPagingItems<Movi
         }
     }
 }
-
