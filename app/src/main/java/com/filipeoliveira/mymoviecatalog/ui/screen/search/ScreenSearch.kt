@@ -54,23 +54,41 @@ fun ScreenContent(viewModel: SearchViewModelImpl, modifier: Modifier = Modifier)
             mutableStateOf<Movie?>(null)
         }
 
-        LazyVerticalStaggeredGrid(
-            columns =
-            if (uiState.loadState.refresh is LoadState.Loading) {
-                StaggeredGridCells.Fixed(1)
-            } else {
-                StaggeredGridCells.Fixed(2)
-            },
-            verticalItemSpacing = dimen8Dp,
-            horizontalArrangement = Arrangement.spacedBy(dimen8Dp),
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(horizontal = dimen16Dp, vertical = dimen16Dp)
-        ) {
-            handleGridItems(uiState){ movie ->
-                showMovieDetail = movie
+        when {
+            uiState.loadState.refresh is LoadState.Loading -> {
+                OnLoading(modifier = Modifier.fillMaxSize().padding(dimen16Dp))
             }
 
-            handleLoadState(uiState)
+            uiState.loadState.refresh is LoadState.Error -> {
+                val error = uiState.loadState.refresh as LoadState.Error
+                OnError(
+                    modifier = Modifier.fillMaxSize().padding(dimen16Dp),
+                    error = error.error,
+                    onClick = {
+                        viewModel.search("")
+                    }
+                )
+            }
+            else -> {
+                LazyVerticalStaggeredGrid(
+                    columns =
+                    if (uiState.loadState.refresh is LoadState.Loading) {
+                        StaggeredGridCells.Fixed(1)
+                    } else {
+                        StaggeredGridCells.Fixed(2)
+                    },
+                    verticalItemSpacing = dimen8Dp,
+                    horizontalArrangement = Arrangement.spacedBy(dimen8Dp),
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(horizontal = dimen16Dp, vertical = dimen16Dp)
+                ) {
+                    handleGridItems(uiState) { movie ->
+                        showMovieDetail = movie
+                    }
+
+                    handleLoadState(uiState)
+                }
+            }
         }
 
         showMovieDetail?.let {

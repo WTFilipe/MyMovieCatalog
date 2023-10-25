@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.filipeoliveira.mymoviecatalog.data.Movie
 import com.filipeoliveira.mymoviecatalog.data.mapper.toMovie
+import com.filipeoliveira.mymoviecatalog.domain.error.EmptyResponseError
 import java.lang.Exception
 
 class SearchMoviesPagingSource(
@@ -18,11 +19,17 @@ class SearchMoviesPagingSource(
         return try {
             val currentPage = params.key ?: 1
             val movies = remoteData.searchMovies(currentPage, query)
-            LoadResult.Page(
-                data = movies.results.map { it.toMovie() },
-                prevKey = if (currentPage == 1) null else currentPage - 1,
-                nextKey = if (movies.results.isEmpty()) null else movies.page + 1
-            )
+
+            if (movies.results.isEmpty() && currentPage == 1){
+                LoadResult.Error(EmptyResponseError())
+            } else {
+                LoadResult.Page(
+                    data = movies.results.map { it.toMovie() },
+                    prevKey = if (currentPage == 1) null else currentPage - 1,
+                    nextKey = if (movies.results.isEmpty()) null else movies.page + 1
+                )
+            }
+
         } catch (e: Exception) {
             return LoadResult.Error(e)
         }
