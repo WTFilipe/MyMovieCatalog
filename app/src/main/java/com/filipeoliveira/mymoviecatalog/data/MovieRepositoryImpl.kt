@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.filipeoliveira.mymoviecatalog.data.local.MovieLocalData
 import com.filipeoliveira.mymoviecatalog.data.mapper.toMovie
+import com.filipeoliveira.mymoviecatalog.data.mapper.toMovieDB
 import com.filipeoliveira.mymoviecatalog.data.remote.MoviePagingSource
 import com.filipeoliveira.mymoviecatalog.data.remote.MovieRemoteData
 import kotlinx.coroutines.flow.Flow
@@ -37,6 +38,16 @@ class MovieRepositoryImpl @Inject constructor (
             localData.markMovieAsWatched(movieId = movie.id)
         }
     }
+
+    override suspend fun addToFavorites(movie: Movie) {
+        localData.addToFavorites(movie = movie.toMovieDB())
+    }
+
+    override suspend fun removeFromFavorites(movie: Movie) {
+        localData.removeFromFavorites(movie = movie.toMovieDB())
+    }
+
+    override suspend fun isFavorite(movie: Movie) : Flow<Boolean> = localData.isFavorite(movie.toMovieDB())
 
     companion object {
         const val PAGE_SIZE = 20
