@@ -126,7 +126,7 @@ private fun LazyStaggeredGridScope.handleGridItems(
 ) {
     items(uiState.itemCount) { index ->
         uiState[index]?.let {
-            MovieItem(it, isDisabled = it.isWatched) { movie ->
+            MovieItem(it) { movie ->
                 onMovieClicked(movie)
             }
         }
