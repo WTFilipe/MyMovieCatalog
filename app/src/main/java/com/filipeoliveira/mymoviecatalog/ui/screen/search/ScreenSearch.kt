@@ -118,10 +118,6 @@ private fun LazyStaggeredGridScope.handleGridItems(
 private fun LazyStaggeredGridScope.handleLoadState(uiState: LazyPagingItems<Movie>) {
     uiState.apply {
         when {
-            loadState.refresh is LoadState.Loading -> {
-                item { OnLoading(modifier = Modifier.fillMaxSize()) }
-            }
-
             loadState.refresh is LoadState.Error -> {
                 val error = uiState.loadState.refresh as LoadState.Error
                 item {
