@@ -11,4 +11,5 @@ interface MovieLocalData {
     suspend fun addToFavorites(movie: MovieDB)
     suspend fun removeFromFavorites(movie: MovieDB)
     suspend fun isFavorite(movie: MovieDB) : Flow<Boolean>
+    suspend fun isWatched(movie: MovieDB) : Flow<Int>
 }

@@ -9,6 +9,10 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -18,6 +22,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.filipeoliveira.mymoviecatalog.data.Movie
 import com.filipeoliveira.mymoviecatalog.ui.components.OnError
 import com.filipeoliveira.mymoviecatalog.ui.components.OnLoading
+import com.filipeoliveira.mymoviecatalog.ui.screen.detail.DialogDetail
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen16Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
 
@@ -32,6 +37,9 @@ fun ScreenHome(
         contentAlignment = Alignment.Center,
     ) {
         val uiState: LazyPagingItems<Movie> = viewModel.movieState.collectAsLazyPagingItems()
+        var showMovieDetail by rememberSaveable{
+            mutableStateOf<Movie?>(null)
+        }
 
         LazyVerticalStaggeredGrid(
             columns =
@@ -46,7 +54,9 @@ fun ScreenHome(
             contentPadding = PaddingValues(horizontal = dimen16Dp, vertical = dimen16Dp)
         ) {
             items(uiState.itemCount) { index ->
-                uiState[index]?.let { MovieItem(it) }
+                uiState[index]?.let { MovieItem(it){ movie ->
+                    showMovieDetail = movie
+                } }
             }
 
             uiState.apply {
@@ -82,6 +92,15 @@ fun ScreenHome(
                     }
                 }
             }
+        }
+
+        showMovieDetail?.let {
+            DialogDetail(
+                movie = it,
+                onDismiss = {
+                    showMovieDetail = null
+                }
+            )
         }
     }
 }

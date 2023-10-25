@@ -9,6 +9,8 @@ import com.filipeoliveira.mymoviecatalog.data.mapper.toMovieDB
 import com.filipeoliveira.mymoviecatalog.data.remote.MoviePagingSource
 import com.filipeoliveira.mymoviecatalog.data.remote.MovieRemoteData
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -31,13 +33,9 @@ class MovieRepositoryImpl @Inject constructor (
         }
     }
 
-    override suspend fun toggleMovieWatchedFlag(movie: Movie) {
-        if (movie.isWatched){
-            localData.markMovieAsNotWatched(movieId = movie.id)
-        } else {
-            localData.markMovieAsWatched(movieId = movie.id)
-        }
-    }
+    override suspend fun markMovieAsWatched(movie: Movie) = localData.markMovieAsWatched(movieId = movie.id)
+
+    override suspend fun markMovieAsNotWatched(movie: Movie) = localData.markMovieAsNotWatched(movieId = movie.id)
 
     override suspend fun addToFavorites(movie: Movie) {
         localData.addToFavorites(movie = movie.toMovieDB())
@@ -48,9 +46,22 @@ class MovieRepositoryImpl @Inject constructor (
     }
 
     override suspend fun isFavorite(movie: Movie) : Flow<Boolean> = localData.isFavorite(movie.toMovieDB())
+    override suspend fun isWatched(movie: Movie) : Flow<Boolean> = flow {
+        localData.isWatched(movie.toMovieDB())
+            .catch {
+                emit(false)
+            }
+            .collect{ result ->
+                if (result == 1){
+                    emit(true)
+                } else {
+                    emit(false)
+                }
+            }
+    }
 
     companion object {
-        const val PAGE_SIZE = 20
+        const val PAGE_SIZE = 10
         const val PREFETCH_DISTANCE = 2
     }
 }

@@ -25,7 +25,8 @@ fun Movie.toMovieDB() = MovieDB(
     release_date = release_date,
     title = title,
     vote_average = vote_average,
-    vote_count = vote_count
+    vote_count = vote_count,
+    alreadyWatched = isWatched
 )
 
 fun MovieDB.toMovie() = Movie(

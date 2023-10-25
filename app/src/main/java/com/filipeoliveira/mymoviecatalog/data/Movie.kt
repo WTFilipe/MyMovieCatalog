@@ -10,7 +10,8 @@ data class Movie(
     val title: String,
     val vote_average: Double,
     val vote_count: Int,
-    val isWatched: Boolean = false
+    val isWatched: Boolean = false,
+    val isFavorite: Boolean = false
 ) {
     fun getPosterURL() = "https://image.tmdb.org/t/p/w500${poster_path}"
     fun getReleaseYear() = release_date.substringBefore("-")

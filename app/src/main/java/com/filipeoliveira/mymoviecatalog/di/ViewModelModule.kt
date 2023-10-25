@@ -1,5 +1,9 @@
 package com.filipeoliveira.mymoviecatalog.di
 
+import com.filipeoliveira.mymoviecatalog.ui.screen.detail.DialogViewModel
+import com.filipeoliveira.mymoviecatalog.ui.screen.detail.DialogViewModelImpl
+import com.filipeoliveira.mymoviecatalog.ui.screen.favorite.FavoriteViewModel
+import com.filipeoliveira.mymoviecatalog.ui.screen.favorite.FavoriteViewModelImpl
 import com.filipeoliveira.mymoviecatalog.ui.screen.home.HomeViewModel
 import com.filipeoliveira.mymoviecatalog.ui.screen.home.HomeViewModelImpl
 import dagger.Binds
@@ -14,5 +18,15 @@ abstract class ViewModelModule {
     abstract fun providesHomeViewModel(
         homeViewModel: HomeViewModelImpl
     ): HomeViewModel
+
+    @Binds
+    abstract fun providesFavoriteViewModel(
+        favoriteViewModel: FavoriteViewModelImpl
+    ): FavoriteViewModel
+
+    @Binds
+    abstract fun providesDialogViewModel(
+        dialogViewModelImpl: DialogViewModelImpl
+    ): DialogViewModel
 
 }

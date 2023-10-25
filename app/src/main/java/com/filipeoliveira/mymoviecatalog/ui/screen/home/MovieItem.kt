@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,11 +27,13 @@ import com.filipeoliveira.mymoviecatalog.ui.forwardingPainter
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen4Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieItem(
     movie: Movie,
     modifier: Modifier = Modifier,
-    isDisabled: Boolean = false
+    isDisabled: Boolean = false,
+    onCardClicked: ((Movie) -> Unit)? = null
 ) {
     Card(
         modifier = modifier
@@ -39,7 +42,10 @@ fun MovieItem(
             .alpha(if (isDisabled) 0.4F else 1.0F),
         elevation = CardDefaults.cardElevation(
             defaultElevation = dimen8Dp
-        )
+        ),
+        onClick = {
+            onCardClicked?.let { it(movie) }
+        }
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

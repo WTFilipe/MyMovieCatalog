@@ -23,4 +23,6 @@ interface MovieDAO {
     fun deleteMovie(movie: MovieDB)
     @Query ("SELECT EXISTS (SELECT 1 FROM MovieDB WHERE id = :movieId)")
     fun isFavorite(movieId: Int) : Flow<Boolean>
+    @Query ("SELECT alreadyWatched FROM MovieDB WHERE id = :movieId")
+    fun isWatched(movieId: Int) : Flow<Int>
 }
