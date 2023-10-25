@@ -6,8 +6,8 @@ import com.filipeoliveira.mymoviecatalog.data.Movie
 import com.filipeoliveira.mymoviecatalog.data.mapper.toMovie
 import java.lang.Exception
 
-class MoviePagingSource(
-    private val remoteData: MovieRemoteData
+class PopularMoviesPagingSource(
+    private val remoteData: MovieRemoteData,
 ) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition

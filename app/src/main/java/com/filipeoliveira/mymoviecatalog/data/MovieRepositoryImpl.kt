@@ -6,8 +6,9 @@ import androidx.paging.PagingData
 import com.filipeoliveira.mymoviecatalog.data.local.MovieLocalData
 import com.filipeoliveira.mymoviecatalog.data.mapper.toMovie
 import com.filipeoliveira.mymoviecatalog.data.mapper.toMovieDB
-import com.filipeoliveira.mymoviecatalog.data.remote.MoviePagingSource
+import com.filipeoliveira.mymoviecatalog.data.remote.PopularMoviesPagingSource
 import com.filipeoliveira.mymoviecatalog.data.remote.MovieRemoteData
+import com.filipeoliveira.mymoviecatalog.data.remote.SearchMoviesPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -22,7 +23,16 @@ class MovieRepositoryImpl @Inject constructor (
         return Pager(
             config = PagingConfig(pageSize = PAGE_SIZE, prefetchDistance = PREFETCH_DISTANCE),
             pagingSourceFactory = {
-                MoviePagingSource(remoteData)
+                PopularMoviesPagingSource(remoteData)
+            }
+        ).flow
+    }
+
+    override suspend fun searchMovies(query: String): Flow<PagingData<Movie>> {
+        return Pager(
+            config = PagingConfig(pageSize = PAGE_SIZE, prefetchDistance = PREFETCH_DISTANCE),
+            pagingSourceFactory = {
+                SearchMoviesPagingSource(remoteData, query)
             }
         ).flow
     }

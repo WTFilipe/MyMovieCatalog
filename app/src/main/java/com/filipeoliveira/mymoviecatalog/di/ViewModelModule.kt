@@ -6,6 +6,8 @@ import com.filipeoliveira.mymoviecatalog.ui.screen.favorite.FavoriteViewModel
 import com.filipeoliveira.mymoviecatalog.ui.screen.favorite.FavoriteViewModelImpl
 import com.filipeoliveira.mymoviecatalog.ui.screen.home.HomeViewModel
 import com.filipeoliveira.mymoviecatalog.ui.screen.home.HomeViewModelImpl
+import com.filipeoliveira.mymoviecatalog.ui.screen.search.SearchViewModel
+import com.filipeoliveira.mymoviecatalog.ui.screen.search.SearchViewModelImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -28,5 +30,10 @@ abstract class ViewModelModule {
     abstract fun providesDialogViewModel(
         dialogViewModelImpl: DialogViewModelImpl
     ): DialogViewModel
+
+    @Binds
+    abstract fun providesSearchViewModel(
+       searchViewModelImpl: SearchViewModelImpl
+    ): SearchViewModel
 
 }

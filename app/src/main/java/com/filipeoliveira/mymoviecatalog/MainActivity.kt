@@ -18,6 +18,7 @@ import com.filipeoliveira.mymoviecatalog.ui.components.MoviesBottomNavigation
 import com.filipeoliveira.mymoviecatalog.ui.screen.Screens
 import com.filipeoliveira.mymoviecatalog.ui.screen.favorite.ScreenFavorite
 import com.filipeoliveira.mymoviecatalog.ui.screen.home.ScreenHome
+import com.filipeoliveira.mymoviecatalog.ui.screen.search.ScreenSearch
 import com.filipeoliveira.mymoviecatalog.ui.theme.MyMovieCatalogTheme
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen2Dp
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +34,7 @@ class MainActivity : ComponentActivity() {
 
                 val screensInBottomNav = listOf(
                     Screens.Home,
+                    Screens.Search,
                     Screens.Favorites
                 )
 
@@ -57,6 +59,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable(Screens.Home.route) { ScreenHome() }
                         composable(Screens.Favorites.route) { ScreenFavorite() }
+                        composable(Screens.Search.route) { ScreenSearch() }
                     }
                 }
             }

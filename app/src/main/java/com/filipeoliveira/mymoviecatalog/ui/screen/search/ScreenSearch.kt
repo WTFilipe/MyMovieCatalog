@@ -1,10 +1,13 @@
-package com.filipeoliveira.mymoviecatalog.ui.screen.home
+package com.filipeoliveira.mymoviecatalog.ui.screen.search
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridScope
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
@@ -24,14 +27,23 @@ import com.filipeoliveira.mymoviecatalog.data.Movie
 import com.filipeoliveira.mymoviecatalog.ui.components.OnError
 import com.filipeoliveira.mymoviecatalog.ui.components.OnLoading
 import com.filipeoliveira.mymoviecatalog.ui.screen.detail.DialogDetail
+import com.filipeoliveira.mymoviecatalog.ui.screen.home.MovieItem
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen16Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
 
 @Composable
-fun ScreenHome(
+fun ScreenSearch(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModelImpl = hiltViewModel()
+    viewModel: SearchViewModelImpl = hiltViewModel()
 ) {
+    Column(modifier = modifier.fillMaxSize()) {
+        SearchScreenSearchBar(viewModel = viewModel, modifier = Modifier.fillMaxWidth())
+        ScreenContent(viewModel = viewModel, modifier = Modifier.weight(1F))
+    }
+}
+
+@Composable
+fun ScreenContent(viewModel: SearchViewModelImpl, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .background(MaterialTheme.colorScheme.background),
@@ -72,13 +84,31 @@ fun ScreenHome(
     }
 }
 
+@Composable
+fun SearchScreenSearchBar(viewModel: SearchViewModel, modifier: Modifier = Modifier) {
+    var searchFieldValue by rememberSaveable {
+        mutableStateOf("")
+    }
+    MovieSearchBar(
+        value = searchFieldValue,
+        onValueChanged = { query ->
+            searchFieldValue = query
+        },
+        onSearchRequested = {
+            viewModel.search(searchFieldValue)
+        },
+        modifier = modifier
+            .padding(start = dimen16Dp, top = dimen16Dp, end = dimen16Dp)
+    )
+}
+
 private fun LazyStaggeredGridScope.handleGridItems(
     uiState: LazyPagingItems<Movie>,
     onMovieClicked: (Movie) -> Unit
 ) {
     items(uiState.itemCount) { index ->
         uiState[index]?.let {
-            MovieItem(it) { movie ->
+            MovieItem(it, isDisabled = it.isWatched) { movie ->
                 onMovieClicked(movie)
             }
         }

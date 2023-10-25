@@ -9,4 +9,8 @@ class MovieRemoteDataImpl @Inject constructor (
     override suspend fun getPopularMovies(page: Int): MovieRemoteResponse {
         return service.getPopularMovies(page)
     }
+
+    override suspend fun searchMovies(page: Int, query: String): MovieRemoteResponse {
+        return service.searchMovie(page, query)
+    }
 }

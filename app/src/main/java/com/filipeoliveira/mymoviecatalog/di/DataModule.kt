@@ -22,6 +22,8 @@ import com.filipeoliveira.mymoviecatalog.domain.RemoveFromFavoriteUseCase
 import com.filipeoliveira.mymoviecatalog.domain.RemoveFromFavoriteUseCaseImpl
 import com.filipeoliveira.mymoviecatalog.domain.MarkMovieAsWatchedUseCase
 import com.filipeoliveira.mymoviecatalog.domain.MarkMovieAsWatchedUseCaseImpl
+import com.filipeoliveira.mymoviecatalog.domain.SearchMoviesUseCase
+import com.filipeoliveira.mymoviecatalog.domain.SearchMoviesUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -52,4 +54,6 @@ abstract class DataModule {
     abstract fun providesMarkMovieAsWatchedUseCase(markMovieAsWatchedUseCaseImpl: MarkMovieAsWatchedUseCaseImpl) : MarkMovieAsWatchedUseCase
     @Binds
     abstract fun providesMarkMovieAsNotWatchedUseCase(markMovieAsNotWatchedUseCaseImpl: MarkMovieAsNotWatchedUseCaseImpl) : MarkMovieAsNotWatchedUseCase
+    @Binds
+    abstract fun providesSearchMoviesUseCase(searchMoviesUseCaseImpl: SearchMoviesUseCaseImpl) : SearchMoviesUseCase
 }
