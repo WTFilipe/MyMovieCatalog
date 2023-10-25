@@ -3,6 +3,7 @@ package com.filipeoliveira.data.di
 import android.content.Context
 import androidx.room.Room
 import com.filipeoliveira.data.local.AppDatabase
+import com.filipeoliveira.data.local.MovieDAO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,5 +20,11 @@ object RoomModule {
         return Room
             .databaseBuilder(context = applicationContext, AppDatabase::class.java, "app-database")
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesMovieDAO(appDatabase: AppDatabase) : MovieDAO {
+        return appDatabase.getMoviesDAO()
     }
 }

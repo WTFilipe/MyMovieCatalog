@@ -5,26 +5,26 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MovieLocalDataImpl @Inject constructor(
-    private val appDatabase: AppDatabase
+    private val moviesDAO: MovieDAO
 ) : MovieLocalData {
-    override suspend fun getFavoriteMoviesList() = appDatabase.getMoviesDAO().getFavoriteMovies()
+    override suspend fun getFavoriteMoviesList() = moviesDAO.getFavoriteMovies()
 
     override suspend fun markMovieAsWatched(movieId: Int) {
-        appDatabase.getMoviesDAO().markMovieAsWatched(movieId = movieId)
+        moviesDAO.markMovieAsWatched(movieId = movieId)
     }
 
     override suspend fun markMovieAsNotWatched(movieId: Int) {
-        appDatabase.getMoviesDAO().markMovieAsNotWatched(movieId = movieId)
+        moviesDAO.markMovieAsNotWatched(movieId = movieId)
     }
 
     override suspend fun addToFavorites(movie: MovieDB) {
-        appDatabase.getMoviesDAO().addMovie(movie = movie)
+        moviesDAO.addMovie(movie = movie)
     }
 
     override suspend fun removeFromFavorites(movie: MovieDB) {
-        appDatabase.getMoviesDAO().deleteMovie(movie = movie)
+        moviesDAO.deleteMovie(movie = movie)
     }
-    override suspend fun isFavorite(movie: MovieDB): Flow<Boolean> = appDatabase.getMoviesDAO().isFavorite(movieId = movie.id)
-    override suspend fun isWatched(movie: MovieDB): Flow<Int> = appDatabase.getMoviesDAO().isWatched(movieId = movie.id)
+    override suspend fun isFavorite(movie: MovieDB): Flow<Boolean> = moviesDAO.isFavorite(movieId = movie.id)
+    override suspend fun isWatched(movie: MovieDB): Flow<Int> = moviesDAO.isWatched(movieId = movie.id)
 
 }
