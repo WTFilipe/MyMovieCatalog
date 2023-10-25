@@ -30,6 +30,10 @@ Também é possível clicar no item para ver mais informações
 ## Observações
 - A aplicação foi pensada para usar os conceitos de temas dinâmicos do Material 3. Por conta disso, as cores do aplicativo podem ser diferentes das cores exibidas na captura de tela, pois serão baseadas na cor do papel de parede do dispositivo. Quaisquer que sejam as cores, a hierarquia de cores, visibilidade e contraste estão garantidos. Caso o projeto seja executado em um dispositivo que não ofereça suporte ao Material 3, um tema padrão (cores próximas ao vermelho) será apresentado
 
-
 ## Execução
 O aplicativo já está pronto para a execução. Basta clonar o projeto e rodar no Android Studio
+
+## Pontos de melhoria já mapeados
+- Caso a listagem tenha apenas 2 items, a altura dos itens fica diferente (esse é o comportamento esperado do LazyVerticalStaggeredGrid, uma solução seria usar o LazyColumn nesse caso em particular)
+- Feedbacks mais personalizados para cada tipo de erro (por exemplo, diferenciar o feedback de falta de conexão com a internet do feedback de timeout)
+- Baixa cobertura de teste
