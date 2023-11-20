@@ -2,6 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="AddingToFavoriteTest">
+        <State />
+      </entry>
       <entry key="addToFavoritesAndSeeItOnFavoriteList()">
         <State />
       </entry>

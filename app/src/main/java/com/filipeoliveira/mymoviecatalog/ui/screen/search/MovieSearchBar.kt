@@ -8,13 +8,16 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import com.filipeoliveira.mymoviecatalog.R
 import com.filipeoliveira.mymoviecatalog.TestTags.SEARCH_TEXT_FIELD
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun MovieSearchBar(
     value: String,
@@ -22,6 +25,8 @@ fun MovieSearchBar(
     onSearchRequested: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     TextField(
         value = value,
         onValueChange = onValueChanged,
@@ -39,6 +44,7 @@ fun MovieSearchBar(
         keyboardActions = KeyboardActions(
             onSearch = {
                 onSearchRequested()
+                keyboardController?.hide()
             }
         )
     )
