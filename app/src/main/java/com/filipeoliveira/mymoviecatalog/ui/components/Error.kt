@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.filipeoliveira.mymoviecatalog.R
 import com.filipeoliveira.domain.error.EmptyResponseError
+import com.filipeoliveira.domain.error.ShortInputError
 import java.net.UnknownHostException
 
 @Composable
@@ -22,6 +23,7 @@ fun OnError(
     val errorText = when (error) {
         is EmptyResponseError -> stringResource(R.string.error_empty_response)
         is UnknownHostException -> stringResource(R.string.error_no_network)
+        is ShortInputError -> stringResource(R.string.error_short_input)
         else -> stringResource(R.string.error_generic)
     }
 

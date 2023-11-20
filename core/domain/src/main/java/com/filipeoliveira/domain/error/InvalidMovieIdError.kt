@@ -1,3 +1,3 @@
 package com.filipeoliveira.domain.error
 
-class EmptyResponseError : Exception()
+class InvalidMovieIdError : Exception()

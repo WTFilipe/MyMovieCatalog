@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +34,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import com.filipeoliveira.mymoviecatalog.R
 import com.filipeoliveira.domain.model.Movie
+import com.filipeoliveira.mymoviecatalog.TestTags.ADD_TO_FAVORITES_BUTTON
 import com.filipeoliveira.mymoviecatalog.ui.components.OnLoading
 import com.filipeoliveira.mymoviecatalog.ui.forwardingPainter
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen16Dp
@@ -247,11 +249,13 @@ fun DialogDetailMiddle(
                 .clickable {
                     onFavoriteButtonClicked()
                 }
+                .testTag(ADD_TO_FAVORITES_BUTTON)
         ) {
             Icon(
                 imageVector = if (isFavorite) Icons.Default.FavoriteBorder else Icons.Default.Favorite,
                 contentDescription = null,
-                modifier = Modifier.height(IntrinsicSize.Max)
+                modifier = Modifier
+                    .height(IntrinsicSize.Max)
             )
             Spacer(modifier = Modifier.width(dimen2Dp))
             Text(

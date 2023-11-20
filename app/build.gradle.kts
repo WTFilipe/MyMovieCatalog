@@ -17,7 +17,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.filipeoliveira.mymoviecatalog.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -91,4 +91,16 @@ dependencies {
 
     //Material Icons
     implementation("androidx.compose.material:material-icons-extended")
+
+    //Testing
+    androidTestImplementation ("com.google.dagger:hilt-android-testing:2.37")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.48.1")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation ("androidx.test:core-ktx:1.4.0")
+    androidTestImplementation ("androidx.test:runner:1.4.0")
+
+    //Room Database
+    implementation("androidx.room:room-runtime:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
+    kapt("androidx.room:room-compiler:2.5.2")
 }
