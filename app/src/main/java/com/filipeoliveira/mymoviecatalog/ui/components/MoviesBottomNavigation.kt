@@ -7,11 +7,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.filipeoliveira.mymoviecatalog.TestTags.BOTTOM_NAV_FAVORITE
+import com.filipeoliveira.mymoviecatalog.TestTags.BOTTOM_NAV_HOME
+import com.filipeoliveira.mymoviecatalog.TestTags.BOTTOM_NAV_SEARCH
 import com.filipeoliveira.mymoviecatalog.ui.screen.Screens
 
 @Composable
@@ -39,7 +43,14 @@ fun MoviesBottomNavigation (
                         launchSingleTop = true
                         restoreState = true
                     }
-                }
+                },
+                modifier = Modifier.testTag(
+                    when(screen){
+                        Screens.Home -> BOTTOM_NAV_HOME
+                        Screens.Search -> BOTTOM_NAV_SEARCH
+                        else -> BOTTOM_NAV_FAVORITE
+                    }
+                )
             )
         }
     }

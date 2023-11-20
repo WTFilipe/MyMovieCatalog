@@ -17,12 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.filipeoliveira.mymoviecatalog.R
 import com.filipeoliveira.domain.model.Movie
+import com.filipeoliveira.mymoviecatalog.TestTags.MOVIE_ITEM
 import com.filipeoliveira.mymoviecatalog.ui.forwardingPainter
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen4Dp
 import com.filipeoliveira.mymoviecatalog.ui.theme.dimen8Dp
@@ -39,7 +41,8 @@ fun MovieItem(
         modifier = modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surface)
-            .alpha(if (isDisabled) 0.4F else 1.0F),
+            .alpha(if (isDisabled) 0.4F else 1.0F)
+            .testTag(MOVIE_ITEM),
         elevation = CardDefaults.cardElevation(
             defaultElevation = dimen8Dp
         ),
