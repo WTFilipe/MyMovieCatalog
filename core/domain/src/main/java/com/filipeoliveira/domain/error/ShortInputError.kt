@@ -1,3 +1,3 @@
 package com.filipeoliveira.domain.error
 
-class ShortInputError : Throwable()
+class ShortInputError : Exception()

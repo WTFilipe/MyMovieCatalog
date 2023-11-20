@@ -60,7 +60,7 @@ class MovieRemoteDataTest {
             total_pages = 0,
             total_results = 0
         )
-        Mockito.`when`(movieRemoteData.getPopularMovies()).thenReturn(movieRemoteResponse)
+        Mockito.`when`(service.getPopularMovies(1)).thenReturn(movieRemoteResponse)
 
         // Act
         val result = movieRemoteData.getPopularMovies()
